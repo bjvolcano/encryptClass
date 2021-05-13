@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>encryptClass</artifactId>
+        <groupId>com.tb</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>encrypted</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.tb</groupId>
+            <artifactId>api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.tb</groupId>
+                <artifactId>encrypt-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <!-- key的长度要是8的倍数-->
+                    <key>01234567899876543210bpls</key>
+                    <!--key和keyUrl两个选一个，key的优先级高-->
+                    <!--<keyUrl>http://192.168.1.xx/getEncrypt</keyUrl>-->
+                    <!--jarTargetPath可不配置，适用于外部jar包引入的方式-->
+                    <!--<jarTargetPath>/xxxx/xxx/lib</jarTargetPath>-->
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>encrypt</id>
+                        <goals>
+                            <goal>encrypt</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                    </execution>
+                    <!--不复制到其他目录的可以不配置copy，copy需要配合jarTargetPath参数适用-->
+                    <execution>
+                        <id>copy</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

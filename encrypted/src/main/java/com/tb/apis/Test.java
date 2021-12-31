@@ -1,6 +1,7 @@
 package com.tb.apis;
 
 import com.tb.interfaces.ITest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -10,16 +11,17 @@ import javax.annotation.PostConstruct;
  * @Date 2021/5/7 6:56 下午
  * @Version 1.0
  */
+@Slf4j
 @Component
 public class Test implements ITest {
     @Override
     public void test() {
-        System.out.println("--------------------");
+        log.info("----------do Test implement----------");
     }
 
     @PostConstruct
     public void init() {
 
-        System.out.println(this.getClass().getClassLoader() + " test inited");
+        log.info(this.getClass().getClassLoader().getClass().getName() + " test inited");
     }
 }

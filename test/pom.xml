@@ -18,7 +18,7 @@
         </dependency>
         <dependency>
             <groupId>com.tb</groupId>
-            <artifactId>des</artifactId>
+            <artifactId>encrypted</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

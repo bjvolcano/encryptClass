@@ -8,8 +8,7 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
-/target/*
+*/target/
 *.iml
 *.class
-*/target/classes/
-*/target/classes/
+

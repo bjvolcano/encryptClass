@@ -34,8 +34,8 @@ import java.util.zip.ZipEntry;
  * @Date 2021/5/7 1:52 下午
  * @Version 1.0
  */
-@Data
 @Slf4j
+@Data
 public class EncryptClassLoader extends URLClassLoader {
 
     // 密钥
@@ -79,14 +79,14 @@ public class EncryptClassLoader extends URLClassLoader {
     }
 
     public void start() {
-        loadCalsses2Cache();
+        loadClasses2Cache();
         checkPool.scheduleWithFixedDelay(() -> {
-            loadCalsses2Cache();
+            loadClasses2Cache();
         }, 60, 60, TimeUnit.SECONDS);
     }
 
     @SneakyThrows
-    public void loadCalsses2Cache() {
+    public void loadClasses2Cache() {
         URL[] urls = this.getURLs();
         if (urls != null) {
 

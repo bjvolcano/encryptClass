@@ -1,6 +1,7 @@
 package com.volcano.classloader.loader;
 
 
+import com.volcano.classloader.config.Encrypt;
 import com.volcano.classloader.des.Use3DES;
 import com.volcano.classloader.util.LoaderUtil;
 import com.volcano.classloader.util.SpringUtil;
@@ -62,7 +63,11 @@ public class EncryptClassLoader extends URLClassLoader {
         super(urls, parent);
     }
 
-    public static EncryptClassLoader getInstance() {
+    public static synchronized EncryptClassLoader getInstance(Encrypt encrypt, final ClassLoader classLoader) {
+        if (INSTANCE == null) {
+            INSTANCE = (EncryptClassLoader) getInstance(classLoader);
+        }
+
         return INSTANCE;
     }
 

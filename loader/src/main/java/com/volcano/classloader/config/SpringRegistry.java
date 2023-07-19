@@ -1,6 +1,7 @@
 package com.volcano.classloader.config;
 
 import com.volcano.classloader.loader.EncryptClassLoader;
+import com.volcano.classloader.util.FileUtil;
 import lombok.Data;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -19,12 +20,14 @@ public class SpringRegistry implements BeanFactoryPostProcessor {
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-
-        EncryptClassLoader instance = EncryptClassLoader.getInstance();
-        if(instance==null)
+        Encrypt encrypt = FileUtil.loadEncryptByConfig();
+        EncryptClassLoader instance = EncryptClassLoader.getInstance(encrypt, this.getClass().getClassLoader());
+        if (instance == null) {
             return;
+        }
+
         instance.setBeanFactory((DefaultListableBeanFactory) beanFactory);
-        if(!(beanFactory.getBeanClassLoader() instanceof EncryptClassLoader)){
+        if (!(beanFactory.getBeanClassLoader() instanceof EncryptClassLoader)) {
             beanFactory.setBeanClassLoader(instance);
         }
 

@@ -26,6 +26,8 @@ import java.util.List;
 @Slf4j
 @Data
 public class Encrypt {
+
+    public static final String ENCRYPT_FILE = "encrypt.yml";
     //@Value("${encrypt-classes.libPath:}")
     private String libPath;
 

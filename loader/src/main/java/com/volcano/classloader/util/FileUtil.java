@@ -1,13 +1,13 @@
 package com.volcano.classloader.util;
 
+import com.volcano.classloader.config.Encrypt;
 import lombok.SneakyThrows;
+import org.yaml.snakeyaml.Yaml;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.Map;
 
 /**
  * @Author bjvolcano
@@ -56,5 +56,21 @@ public class FileUtil {
     @SneakyThrows
     private static ByteBuffer convertStringToByte(String content) {
         return ByteBuffer.wrap(content.getBytes("utf-8"));
+    }
+
+    public static Encrypt loadEncryptByConfig() {
+        String path = FileUtil.class.getClass().getResource(Encrypt.ENCRYPT_FILE).getPath();
+        Encrypt encrypt = new Encrypt();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+            Yaml yaml = new Yaml();
+            Map<String, String> args = yaml.load(reader);
+            encrypt.setKey(args.get("key"));
+            encrypt.setKeyUrl(args.get("keyUrl"));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        return encrypt;
     }
 }

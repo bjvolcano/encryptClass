@@ -3,33 +3,31 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>encryptClass</artifactId>
-        <groupId>com.tb</groupId>
+        <artifactId>encrypt</artifactId>
+        <groupId>com.volcano</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>encrypted</artifactId>
     <dependencies>
         <dependency>
-            <groupId>com.tb</groupId>
+            <groupId>com.volcano</groupId>
             <artifactId>api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
     </dependencies>
-
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <build>
         <plugins>
             <plugin>
-                <groupId>com.tb</groupId>
+                <groupId>com.volcano</groupId>
                 <artifactId>encrypt-plugin</artifactId>
                 <version>1.0-SNAPSHOT</version>
                 <configuration>

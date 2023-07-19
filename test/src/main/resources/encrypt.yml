@@ -1,5 +1,0 @@
-key: 01234567899876543210bpls
-#暂时用不到，通过项目外部目录引入jar或者class
-#libPath: /Users/bjvolcano/IdeaProjects/testClassLoader/lib
-#为了编译时的key统一、安全可以使用http方式获取key
-#keyUrl:
